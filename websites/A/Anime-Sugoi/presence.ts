@@ -35,7 +35,7 @@ presence.on("UpdateData", async () => {
   const presenceData: PresenceData = {
     largeImageKey: "icon"
   };
-
+  
   if (document.location.pathname === "/") {
     presenceData.startTimestamp = browsingStamp;
     presenceData.details = "อนิเมะอัพเดตล่าสุด";
