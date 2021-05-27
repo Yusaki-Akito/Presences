@@ -1,16 +1,16 @@
 const presence = new Presence({
     clientId: "709308577701036074"
-  }),
-  strings = presence.getStrings({
+}),
+strings = presence.getStrings({
     play: "presence.playback.playing",
     pause: "presence.playback.paused",
     browsing: "presence.activity.browsing"
-  });
+});
 
 let video = {
-  current: 0,
-  duration: 0,
-  paused: true
+current: 0,
+duration: 0,
+paused: true
 };
 
 const browsingStamp = Math.floor(Date.now() / 1000),
@@ -25,14 +25,16 @@ const browsingStamp = Math.floor(Date.now() / 1000),
   path = document.location;
 
 presence.on(
-  "iFrameData",
-  (data: { current: number; duration: number; paused: boolean }) => {
+"iFrameData",
+(data: {
+    current: number;duration: number;paused: boolean
+}) => {
     video = data;
-  }
+}
 );
 
 presence.on("UpdateData", async () => {
-  const presenceData: PresenceData = {
+const presenceData: PresenceData = {
     largeImageKey: "icon"
   };
   
@@ -126,7 +128,7 @@ presence.on("UpdateData", async () => {
     delete presenceData.endTimestamp;
   }
 
-  if (presenceData.details == null) {
+if (presenceData.details == null) {
     presence.setTrayTitle();
     presence.setActivity();
   } else presence.setActivity(presenceData);
